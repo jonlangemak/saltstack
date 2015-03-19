@@ -1,0 +1,16 @@
+[Unit]
+Description=Kubernetes Controller Manager
+After=etcd.service
+After=apiserver.service
+Wants=etcd.service
+Wants=apiserver.service
+
+[Service]
+ExecStart=/opt/kubernetes/kube-controller-manager \
+--master=http://127.0.0.1:8080 \
+--machines=10.20.30.62,10.20.30.63,192.168.10.64,192.168.10.65
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

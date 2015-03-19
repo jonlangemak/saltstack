@@ -1,0 +1,21 @@
+[Unit]
+Description=Kubernetes Kubelet
+After=etcd.service
+After=docker.service
+Wants=etcd.service
+Wants=docker.service
+
+[Service]
+ExecStart=/opt/kubernetes/kubelet \
+--address=192.168.10.65 \
+--port=10250 \
+--hostname_override=192.168.10.65 \
+--api_servers=http://10.20.30.61:8080 \
+--cluster_dns=10.100.0.10 \
+--cluster_domain=kubdomain.local \
+--logtostderr=true
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
