@@ -3,6 +3,7 @@ base:
     - baseinstall
   '*masta*':
     - masterinstall
+    - pods
   'host:kubminion1':
     - match: grain
     - minion1

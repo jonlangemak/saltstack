@@ -13,6 +13,7 @@ ExecStart=/opt/kubernetes/kubelet \
 --api_servers=http://10.20.30.61:8080 \
 --cluster_dns=10.100.0.10 \
 --cluster_domain=kubdomain.local \
+--config=/etc/kubernetes/manifests \
 --logtostderr=true
 Restart=on-failure
 RestartSec=5

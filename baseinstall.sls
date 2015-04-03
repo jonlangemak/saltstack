@@ -13,7 +13,14 @@ selinux-config:
 disable-selinux:
   cmd.run:
     - name: /usr/sbin/setenforce 0
-    - onlyif: test $(getenforce) = "enforcing"
+
+temp-package-fix1:
+  cmd.run:
+    - name: yum-config-manager --enable public_ol6_latest
+
+temp-package-fix2:
+  cmd.run:
+    - name: yum --assumeyes install device-mapper-event-libs
 
 firewalld:
   service:

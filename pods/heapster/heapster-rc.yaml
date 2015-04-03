@@ -1,21 +1,19 @@
-apiVersion: "v1beta1"
-id: "monitoring-heapster-controller"
-kind: "ReplicationController"
-desiredState:
+apiVersion: v1beta1
+id: monitoring-heapster-controller
+kind: ReplicationController
+desiredState: 
   replicas: 1
-  replicaSelector:
-    name: "heapster"
+  replicaSelector:    
+    name: heapster
   podTemplate:
     desiredState:
       manifest:
-        version: "v1beta1"
-        id: "monitoring-heapster-controller"
+        version: v1beta1
+        id: monitoring-heapster
         containers:
-          - name: "heapster"
-            image: "kubernetes/heapster:v0.9"
-            env:
-              - name: "CADVISOR_PORT"
-                value: "4194"
+          - name: heapster
+            image: gcr.io/google-containers/heapster:v0.9
+            env: 
               - name: "INFLUXDB_HOST"
                 value: "monitoring-influxdb"
               - name: "SINK"
@@ -29,8 +27,10 @@ desiredState:
             source:
               hostDir:
                 path: /etc/ssl/certs
-    labels:
-      name: "heapster"
-      uses: "monitoring-influxdb"
-labels:
-  name: "heapster"
+    labels: 
+      name: heapster
+      uses: monitoring-influxdb
+      kubernetes.io/cluster-service: "true"
+labels: 
+  name: heapster
+  kubernetes.io/cluster-service: "true"

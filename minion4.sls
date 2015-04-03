@@ -25,6 +25,28 @@ docker:
     - dir_mode: 755
     - file_mode: 755
 
+#Setup and copy down the manifests
+/etc/kubernetes:
+  file.directory:
+    - user: root
+    - group: root
+    - dir_mode: 755
+    - file_mode: 755
+
+/etc/kubernetes/manifests:
+  file.directory:
+    - user: root
+    - group: root
+    - dir_mode: 755
+    - file_mode: 755
+
+/etc/kubernetes/manifests/fluentd.yaml:
+  file.managed:
+    - source: salt://manifests/fluentd.yaml
+    - user: root
+    - group: root
+    - mode: 755
+
 #Pull down kubernetes binaries
 /opt/kubernetes/kube-proxy:
   file:
@@ -69,3 +91,5 @@ kube-kubelet:
   service:
     - running
     - enable: true
+    - watch:
+      - file: /etc/kubernetes/manifests/*
