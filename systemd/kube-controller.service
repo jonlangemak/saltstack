@@ -8,7 +8,7 @@ Wants=apiserver.service
 [Service]
 ExecStart=/opt/kubernetes/kube-controller-manager \
 --master=http://127.0.0.1:8080 \
---machines=10.20.30.62,10.20.30.63,192.168.10.64,192.168.10.65
+--machines=kubminion1,kubminion2,kubminion3,kubminion4
 Restart=on-failure
 RestartSec=5
 

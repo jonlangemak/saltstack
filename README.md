@@ -7,3 +7,6 @@ This is the repo I'll be using to track my salt-stack implementation of Kubernet
 The lab has 1 server (kubbuild) that I use for building the Kubernetes binaries and also acts as the salt-master.  The remaining 5 servers (kubmasta, kubminion[1-4]) are the actual Kubernetes cluster and all act as salt-minions.  That being said, for the Salt config to work your servers have to have the same IP addresses and DNS names that I use in my lab.  
 
 I'll be updating this as I refine my Salt config and build on the Kubernetes components.
+
+#Revision changes
+4/8/15 - Making this repo compatible with Kubernetes branch release-0.13.  Make sure you clone that branch of the repo (git clone -b release-0.13 https://github.com/GoogleCloudPlatform/kubernetes.git)
